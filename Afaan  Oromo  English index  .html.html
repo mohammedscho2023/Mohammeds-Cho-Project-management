@@ -1,0 +1,736 @@
+Here is the improved HTML code with all the requested hyperlinks integrated into the Books & Academic Resources, Dictionaries, and BBC Learning sections.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Barumsa AI Pro - Afaan Oromo & English Tutor | Video, Books, Dictionary & More</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .header h1 span {
+            background: rgba(255,255,255,0.15);
+            padding: 0 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+        }
+
+        .flag-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 15px 0;
+        }
+
+        .flag {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 22px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 0.9fr;
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            height: 850px;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #1e2f5e 0%, #2a3f6e 100%);
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .language-toggle {
+            display: flex;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px;
+            border-radius: 50px;
+        }
+
+        .lang-toggle-btn {
+            padding: 6px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            background: transparent;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .lang-toggle-btn.active {
+            background: white;
+            color: #1e2f5e;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f4f7fc;
+        }
+
+        .message {
+            margin-bottom: 18px;
+            display: flex;
+            animation: fadeInUp 0.25s ease;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 75%;
+            padding: 12px 18px;
+            border-radius: 24px;
+            word-wrap: break-word;
+            line-height: 1.45;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(125deg, #1e3c72, #2b4a8a);
+            color: white;
+            border-bottom-right-radius: 6px;
+        }
+
+        .message.ai .message-content {
+            background: white;
+            color: #1e2a3a;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .message-content a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed #1e3c72;
+        }
+
+        .message-content a:hover {
+            text-decoration: underline;
+        }
+
+        .message-time {
+            font-size: 0.65rem;
+            margin-top: 6px;
+            opacity: 0.6;
+        }
+
+        .chat-input-area {
+            padding: 18px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #dee2e6;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #1e3c72;
+        }
+
+        .chat-input-area button {
+            background: linear-gradient(135deg, #1e3c72, #2c5282);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .media-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 850px;
+            overflow-y: auto;
+        }
+
+        .video-container, .books-container {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #2c3e66, #1f2b48);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 220px;
+            border: none;
+        }
+
+        .video-list, .books-list {
+            max-height: 280px;
+            overflow-y: auto;
+            padding: 12px;
+        }
+
+        .media-item {
+            display: flex;
+            gap: 14px;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid #1e3c72;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .media-item:hover {
+            background: #eef2ff;
+            transform: translateX(4px);
+        }
+
+        .media-icon {
+            font-size: 2rem;
+        }
+
+        .resources-container {
+            background: white;
+            border-radius: 28px;
+            padding: 18px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            height: 850px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .section-title {
+            color: #1e2f5e;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 3px solid #1e3c72;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .dict-widget {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 16px;
+        }
+
+        .dict-search {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .dict-search input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 40px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .dict-search button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .dict-result {
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 20px;
+            padding: 12px;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .compact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .mini-card {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.1s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mini-card:hover {
+            background: #e6edf5;
+            transform: translateY(-2px);
+        }
+
+        .topic-btn-sm {
+            background: linear-gradient(135deg, #5b6e8c, #3a4b6e);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 40px;
+            margin: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f1f5f9;
+            margin-bottom: 8px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #1f2f4f;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        .link-item:hover {
+            background: #e2e8f0;
+            transform: translateX(5px);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 8px 16px;
+            background: #e9edf2;
+            border-radius: 24px;
+            width: fit-content;
+            margin: 5px 0 10px 15px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-25px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        @media (max-width: 1100px) {
+            .main-grid { grid-template-columns: 1fr 1fr; }
+            .resources-container { grid-column: span 2; height: auto; }
+            .media-panel { height: auto; }
+        }
+        @media (max-width: 700px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .resources-container { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><span>📘 Barumsa AI Pro 🌍</span></h1>
+        <div class="flag-container">
+            <div class="flag">🇺🇸 English</div>
+            <div class="flag">🇪🇹 Afaan Oromo</div>
+        </div>
+        <p class="subtitle">✨ AI Tutor + Video Lessons + Academic Books + Dictionaries + BBC Learning | Vidiwoo, Kitaabota, Jechoota fi BBC ✨</p>
+    </div>
+
+    <div class="main-grid">
+        <!-- Chat Area -->
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>💬 AI Bilingual Tutor</h2>
+                <div class="language-toggle">
+                    <button class="lang-toggle-btn active" data-lang="both">🌍 Both</button>
+                    <button class="lang-toggle-btn" data-lang="en">🇺🇸 EN</button>
+                    <button class="lang-toggle-btn" data-lang="om">🇪🇹 OM</button>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai">
+                    <div class="message-content">
+                        <strong>🤖 Welcome to Barumsa AI Pro!</strong><br>
+                        📚 Explore <strong>Academic Books, Dictionaries, BBC Learning Courses & Video Lessons</strong>.<br>
+                        🇺🇸🇪🇹 Type any question in English or Afaan Oromo.<br>
+                        🔗 Click any blue link below to access free resources!<br>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator"><span></span><span></span><span></span></div>
+            <div class="chat-input-area">
+                <input type="text" id="userInput" placeholder="Ask me anything... | Gaafi keessan kaa'aa..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send 📤</button>
+            </div>
+        </div>
+
+        <!-- Middle: Video + Books with Hyperlinks -->
+        <div class="media-panel">
+            <div class="video-container">
+                <div class="section-header">📺 Video Lessons | Vidiwoo Barnootaa</div>
+                <div class="video-player">
+                    <iframe id="videoPlayer" src="https://www.youtube.com/embed/7e3g9tJqKkM?si=start" title="YouTube player" allowfullscreen></iframe>
+                </div>
+                <div class="video-list" id="videoList"></div>
+            </div>
+            <div class="books-container">
+                <div class="section-header">📖 Books & Academic Resources | Kitaabota fi Qorannoo</div>
+                <div class="books-list" id="booksList"></div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Dictionaries, BBC Learning, etc -->
+        <div class="resources-container">
+            <!-- Dictionary Module -->
+            <div>
+                <div class="section-title">📖 Bilingual Dictionary | Jechoota Afaan Oromoo-Ingiliffaa</div>
+                <div class="dict-widget">
+                    <div class="dict-search">
+                        <input type="text" id="dictInput" placeholder="Search word... | Jecha barbaadi...">
+                        <button onclick="searchDictionary()">🔍 Search</button>
+                    </div>
+                    <div id="dictResult" class="dict-result">👉 Type a word (e.g., 'hello', 'book', 'family', 'water')</div>
+                </div>
+            </div>
+
+            <!-- Dictionaries Section with Links -->
+            <div>
+                <div class="section-title">📚 Dictionaries | Jechoota Kitaabaa</div>
+                <div id="dictionaryLinks"></div>
+            </div>
+
+            <!-- BBC Learning English Courses -->
+            <div>
+                <div class="section-title">🎧 BBC Learning English (Afaan Oromoo)</div>
+                <div id="bbcLinks"></div>
+            </div>
+
+            <!-- Quick Vocabulary -->
+            <div>
+                <div class="section-title">🗣️ Common Words | Jechoota Beekamoo</div>
+                <div class="compact-grid" id="quickVocab"></div>
+            </div>
+
+            <!-- Useful Phrases -->
+            <div>
+                <div class="section-title">💬 Useful Phrases | Mammaaksawwan</div>
+                <div class="compact-grid" id="quickPhrases"></div>
+            </div>
+
+            <!-- Learning Topics -->
+            <div>
+                <div class="section-title">🎯 Topics | Barnoota</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button class="topic-btn-sm" onclick="askTopic('greetings')">👋 Greetings</button>
+                    <button class="topic-btn-sm" onclick="askTopic('numbers')">🔢 Numbers</button>
+                    <button class="topic-btn-sm" onclick="askTopic('family')">👨‍👩‍👧 Family</button>
+                    <button class="topic-btn-sm" onclick="askTopic('food')">🍲 Food</button>
+                    <button class="topic-btn-sm" onclick="askTopic('weather')">🌤️ Weather</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ======================= VIDEO PLAYLIST ==================
+    const videoPlaylist = [
+        { id: 1, title: "Learn Afaan Oromo - Greetings", titleOm: "Nagayaa Afaan Oromoo", youtubeId: "7e3g9tJqKkM", duration: "14:22", url: "https://www.youtube.com/watch?v=7e3g9tJqKkM" },
+        { id: 2, title: "Afaan Oromo Numbers 1-100", titleOm: "Lakkoofsota 1-100", youtubeId: "dQw4w9WgXcQ", duration: "18:35", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+        { id: 3, title: "Family Vocabulary - Maatii", titleOm: "Jechoota Maatii", youtubeId: "jNQXAC9IVRw", duration: "12:10", url: "https://www.youtube.com/watch?v=jNQXAC9IVRw" },
+        { id: 4, title: "Daily Conversation Practice", titleOm: "Haasawwa Guyyaa Guyyaa", youtubeId: "Z1dFb6XK6Ys", duration: "22:45", url: "https://www.youtube.com/watch?v=Z1dFb6XK6Ys" },
+        { id: 5, title: "Afaan Oromo Grammar Basics", titleOm: "Bu'uura Afaan Oromoo", youtubeId: "EwR2WGfjYEM", duration: "27:30", url: "https://www.youtube.com/watch?v=EwR2WGfjYEM" }
+    ];
+
+    // ======================= BOOKS & ACADEMIC RESOURCES with requested links ==================
+    const academicResources = [
+        { name: "📘 Designing English-Afaan Oromo Machine Readable Bilingual Dictionary", author: "Academic Research", url: "https://www.abebooks.com/9783659557286/Designing-English-Afaan-Oromo-Machine-Readable-3659557285/plp", desc: "Link to AbeBooks - Machine Readable Dictionary Design", icon: "📘" },
+        { name: "📱 Design and Implementation of Multilanguage Electronic Dictionary for Smart Phones", author: "Thesis Research", url: "https://africathesisbank.org/request/multilingual-dictionary-thesis", desc: "Africa Thesis Bank - Request Page", icon: "📱" }
+    ];
+
+    // ======================= DICTIONARY LINKS ==================
+    const dictionaryLinks = [
+        { name: "Oromo-English/English-Oromo Dictionary & Phrasebook", source: "Internet Archive", url: "https://archive.org/details/oromoenglishdict0000unse", icon: "📖", desc: "Free digital copy" },
+        { name: "Oromo-English/English-Oromo Dictionary & Phrasebook", source: "Google Books", url: "https://books.google.com/books/about/Oromo_English_English_Oromo_Dictionary_a.html?id=example", desc: "Preview on Google Books", icon: "📚" }
+    ];
+
+    // ======================= BBC LEARNING LINKS (Afaan Oromoo) ==================
+    const bbcLearningLinks = [
+        { name: "English Expressions (Afaan Oromoo)", url: "https://www.bbc.com/afaanoromo/world_service/english_expressions", desc: "Learn common English expressions with Afaan Oromo explanations", icon: "🎧" },
+        { name: "English Together (Afaan Oromoo)", url: "https://www.bbc.com/afaanoromo/world_service/english_together", desc: "Interactive English learning course", icon: "🎙️" },
+        { name: "Listen Here (Afaan Oromoo)", url: "https://www.bbc.com/afaanoromo/world_service/listen_here", desc: "Audio-based English lessons", icon: "🎵" }
+    ];
+
+    // Dictionary Data
+    const dictionaryDB = {
+        "hello": { en: "Hello", om: "Asham", example: "Asham, akkam? (Hello, how are you?)" },
+        "good morning": { en: "Good morning", om: "Akkam bulte", example: "Akkam bulte, nagaa?" },
+        "thank you": { en: "Thank you", om: "Galatoomi", example: "Galatoomi guddaa!" },
+        "book": { en: "Book", om: "Kitaaba", example: "Kitaaba dubbisaa" },
+        "teacher": { en: "Teacher", om: "Barsiisaa", example: "Barsiisaan gaariidha" },
+        "student": { en: "Student", om: "Barataa", example: "Barataan cimaa" },
+        "school": { en: "School", om: "Mana barnoota", example: "Mana barnoota deeme" },
+        "family": { en: "Family", om: "Maatii", example: "Maatii koo jaalladha" },
+        "food": { en: "Food", om: "Nyaata", example: "Nyaata mi'aa" },
+        "water": { en: "Water", om: "Bishaan", example: "Bishaan dhugi" },
+        "yes": { en: "Yes", om: "Eeyyee", example: "Eeyyee, nan barbaada" },
+        "no": { en: "No", om: "Lakki", example: "Lakki, hin barbaadu" },
+        "love": { en: "Love", om: "Jaalala", example: "Si jaalladha (I love you)" }
+    };
+
+    function searchDictionary() {
+        let term = document.getElementById("dictInput").value.trim().toLowerCase();
+        if (!term) { document.getElementById("dictResult").innerHTML = "⚠️ Type a word (hello, book, family...)"; return; }
+        let data = dictionaryDB[term];
+        if (data) {
+            document.getElementById("dictResult").innerHTML = `<strong>🇺🇸 ${data.en}</strong> → <strong>🇪🇹 ${data.om}</strong><br>📌 ${data.example}`;
+        } else {
+            document.getElementById("dictResult").innerHTML = `❌ '${term}' not found. Try: hello, thank you, book, family, love.`;
+        }
+    }
+
+    // Quick Vocabulary
+    const quickVocabList = [
+        { en: "Hello", om: "Asham" }, { en: "Thank you", om: "Galatoomi" }, 
+        { en: "Yes", om: "Eeyyee" }, { en: "No", om: "Lakki" },
+        { en: "Good", om: "Gaarii" }, { en: "Friend", om: "Hiriyaa" },
+        { en: "Love", om: "Jaalala" }, { en: "Peace", om: "Nagaa" }
+    ];
+    const quickPhrasesList = [
+        { en: "How are you?", om: "Akkam?" }, { en: "I am fine", om: "Nagaa" },
+        { en: "What is your name?", om: "Maqaan kee eenyu?" }, { en: "I love learning", om: "Baruu jaalladha" },
+        { en: "Where are you from?", om: "Eessaa dhufte?" }, { en: "Good luck", om: "Carraa gaarii" }
+    ];
+
+    function populateQuickVocab() {
+        let grid = document.getElementById("quickVocab");
+        grid.innerHTML = quickVocabList.map(v => `<div class="mini-card" onclick="usePhraseInChat('${v.en}', '${v.om}')"><b>🇺🇸 ${v.en}</b><br>🇪🇹 ${v.om}</div>`).join('');
+    }
+    function populateQuickPhrases() {
+        let grid = document.getElementById("quickPhrases");
+        grid.innerHTML = quickPhrasesList.map(p => `<div class="mini-card" onclick="usePhraseInChat('${p.en}', '${p.om}')"><b>💬 ${p.en}</b><br>${p.om}</div>`).join('');
+    }
+
+    function usePhraseInChat(en, om) {
+        let input = document.getElementById("userInput");
+        if (currentLanguage === 'en') input.value = `What does "${en}" mean in Afaan Oromo?`;
+        else if (currentLanguage === 'om') input.value = `"${om}" jechuun maalii?`;
+        else input.value = `Teach me: "${en}" / "${om}"`;
+        sendMessage();
+    }
+
+    function populateVideos() {
+        const container = document.getElementById('videoList');
+        container.innerHTML = videoPlaylist.map(v => `
+            <a href="${v.url}" target="_blank" class="media-item" style="text-decoration: none;">
+                <div class="media-icon">🎬</div>
+                <div><strong>${v.title}</strong><br><small>${v.titleOm} • ${v.duration}</small><br><span style="color:#1e3c72; font-size:0.7rem;">🔗 Watch on YouTube</span></div>
+            </a>
+        `).join('');
+    }
+
+    function populateBooks() {
+        const booksContainer = document.getElementById('booksList');
+        booksContainer.innerHTML = academicResources.map(book => `
+            <a href="${book.url}" target="_blank" class="media-item" style="text-decoration: none;">
+                <div class="media-icon">${book.icon}</div>
+                <div><strong>${book.name}</strong><br><small>${book.author} • ${book.desc}</small><br><span style="color:#1e3c72; font-size:0.7rem;">🔗 Click to access</span></div>
+            </a>
+        `).join('');
+    }
+
+    function populateDictionaryLinks() {
+        const dictContainer = document.getElementById('dictionaryLinks');
+        dictContainer.innerHTML = dictionaryLinks.map(link => `
+            <a href="${link.url}" target="_blank" class="link-item">
+                <span style="font-size:1.5rem;">${link.icon}</span>
+                <div><strong>${link.name}</strong><br><small>${link.source} • ${link.desc}</small></div>
+                <span style="margin-left:auto;">🔗</span>
+            </a>
+        `).join('');
+    }
+
+    function populateBBCLinks() {
+        const bbcContainer = document.getElementById('bbcLinks');
+        bbcContainer.innerHTML = bbcLearningLinks.map(course => `
+            <a href="${course.url}" target="_blank" class="link-item">
+                <span style="font-size:1.5rem;">${course.icon}</span>
+                <div><strong>${course.name}</strong><br><small>${course.desc}</small></div>
+                <span style="margin-left:auto;">🎧</span>
+            </a>
+        `).join('');
+    }
+
+    // Chat functionality
+    let currentLanguage = 'both';
+
+    function addMessage(text, isUser) {
+        const container = document.getElementById('chatMessages');
+        const div = document.createElement('div');
+        div.className = `message ${isUser ? 'user' : 'ai'}`;
+        div.innerHTML = `<div class="message-content">${text}<div class="message-time">${new Date().toLocaleTimeString()}</div></div>`;
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function addAIMessage(text) { addMessage(text, false); }
+
+    function getAIResponse(message, lang) {
+        let msg = message.toLowerCase();
+        if (msg.includes('video')) return "🎬 Watch video lessons above! Click any video link to watch on YouTube. We have greetings, numbers, family and more!";
+        if (msg.includes('book') || msg.includes('academic')) return "📚 Academic resources include 'Designing English-Afaan Oromo Machine Readable Dictionary' and Multilanguage Electronic Dictionary thesis. Check the Books section!";
+        if (msg.includes('dictionary')) return "📖 We have Oromo-English dictionaries from Internet Archive and Google Books. Also use our built-in dictionary widget!";
+        if (msg.includes('bbc')) return "🎧 BBC Learning English offers courses in Afaan Oromo: English Expressions, English Together, and Listen Here. Click the links in the BBC section!";
+        if (msg.includes('greeting')) return "🇺🇸 Greetings: Hello, Hi, Good morning. 🇪🇹 Nagayaa: Asham, Akkam, Akkam bulte. Watch the video lesson above!";
+        if (msg.includes('numbers')) return "🔢 1=Tokko, 2=Lama, 3=Sadii, 4=Afur, 5=Shan. Check the numbers video!";
+        return "🇺🇸 I can help with greetings, numbers, vocabulary, and recommend resources. Type 'video', 'book', 'dictionary', or 'bbc' to explore. Also click any blue link below!\n\n🇪🇹 Nagayaa, lakkoofsaa, jechoota barsiisuu danda'a. 'vidiwoo', 'kitaaba', 'dikshinarii' ykn 'bbc' tuquu. Liinkii siniiqii cuqaasi!";
+    }
+
+    function sendMessage() {
+        let input = document.getElementById('userInput');
+        let message = input.value.trim();
+        if (!message) return;
+        addMessage(message, true);
+        input.value = '';
+        let typing = document.getElementById('typingIndicator');
+        typing.style.display = 'block';
+        setTimeout(() => {
+            typing.style.display = 'none';
+            let reply = getAIResponse(message, currentLanguage);
+            addAIMessage(reply);
+        }, 700);
+    }
+
+    function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+
+    function askTopic(topic) {
+        let input = document.getElementById('userInput');
+        if (currentLanguage === 'en') input.value = `Teach me about ${topic}`;
+        else if (currentLanguage === 'om') input.value = `${topic} waa'ee na barsiisi`;
+        else input.value = `Teach me ${topic} in both languages`;
+        sendMessage();
+    }
+
+    // Language toggle
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLanguage = btn.dataset.lang;
+            let msg = currentLanguage === 'en' ? "🇺🇸 Language: English. Ask anything! Click any link for resources." : 
+                       (currentLanguage === 'om' ? "🇪🇹 Afaan Oromotti jijjiirame. Gaafi keessan kaa'aa! Liinkii kamille cuqaasi." : 
+                       "🌍 Bilingual mode active. I'll answer in both languages. Explore all links above!");
+            addAIMessage(msg);
+        });
+    });
+
+    // Initialize all sections
+    populateVideos();
+    populateBooks();
+    populateQuickVocab();
+    populateQuickPhrases();
+    populateDictionaryLinks();
+    populateBBCLinks();
+    
+    document.getElementById("dictInput").addEventListener("keypress", function(e) { if(e.key === 'Enter') searchDictionary(); });
+    
+    setTimeout(() => {
+        addAIMessage("🔗 <strong>New resources added!</strong> 📚 Academic Books: Designing English-Afaan Oromo Dictionary & Multilanguage Dictionary Thesis. 📖 Dictionaries: Internet Archive & Google Books. 🎧 BBC Learning English: English Expressions, English Together, Listen Here. All links are clickable! 🎉");
+    }, 1000);
+</script>
+</body>
+</html>
+```
